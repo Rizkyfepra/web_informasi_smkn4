@@ -111,7 +111,7 @@
   <section class="max-w-7xl mx-auto px-6 py-20">
     <div class="flex items-center justify-between mb-10">
       <h2 class="font-serif text-3xl font-semibold text-slate-900">Galeri Visual</h2>
-      <a href="#" class="text-sm text-slate-700 hover:text-slate-950">Lihat Semua Galeri &#8599;</a>
+      <a href="{{ route('galeri.index') }}" class="text-sm text-slate-700 hover:text-slate-950">Lihat Semua Galeri &#8599;</a>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
