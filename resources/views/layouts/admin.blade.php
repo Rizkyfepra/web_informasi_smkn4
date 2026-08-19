@@ -21,7 +21,7 @@
 
       {{-- Brand --}}
       <div class="h-16 flex items-center gap-3 px-5 border-b border-slate-800">
-        <div class="h-9 w-9 rounded bg-blue-600 flex items-center justify-center text-white text-xs font-bold">S4</div>
+       <img src="{{ asset('images/SMKN4.png') }}" alt="Logo SMKN 4 Kota Bogor" class="h-9 w-9">
         <span class="text-white font-semibold text-sm leading-tight">SMKN 4 Bogor<br><span class="text-slate-400 font-normal text-xs">Admin Panel</span></span>
       </div>
 

@@ -18,7 +18,7 @@
   <header class="border-b border-slate-100">
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
       <div class="flex items-center gap-3">
-        <div class="h-9 w-9 rounded bg-slate-900 flex items-center justify-center text-white text-xs font-bold">S4</div>
+        <img src="{{ asset('images/SMKN4.png') }}" alt="Logo SMKN 4 Kota Bogor" class="h-9 w-9">
         <span class="font-semibold tracking-wide text-slate-900">SMKN 4 KOTA BOGOR</span>
       </div>
       <div class="flex items-center gap-6">
