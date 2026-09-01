@@ -1,12 +1,22 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\GaleriController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GaleriPublicController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// ===== Route custom kita (beranda, galeri, admin) =====
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/galeri', [GaleriPublicController::class, 'index'])->name('galeri.index');
 
+Route::prefix('admin')->name('admin.')
+    ->middleware(['auth', 'can:manage-gallery'])
+    ->group(function () {
+        Route::resource('galeri', GaleriController::class);
+    });
+
+// ===== Route bawaan Breeze (biarkan, dipakai halaman dashboard & edit profil) =====
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
