@@ -66,7 +66,14 @@
         </div>
         <div class="flex items-center gap-3 text-sm text-slate-500">
           <i class="fa-solid fa-circle-user text-xl"></i>
-          <span>Admin</span>
+          <span>{{ auth()->user()->name }}</span>
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="flex items-center gap-1 text-red-600 hover:text-red-700 font-medium transition">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              Keluar
+            </button>
+          </form>
         </div>
       </header>
 

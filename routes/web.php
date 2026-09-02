@@ -16,10 +16,12 @@ Route::prefix('admin')->name('admin.')
         Route::resource('galeri', GaleriController::class);
     });
 
-// ===== Route bawaan Breeze (biarkan, dipakai halaman dashboard & edit profil) =====
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// ===== Route bawaan Breeze (biarkan, dipakai halaman edit profil) =====
+
+// Alias: beberapa file Breeze (verifikasi email, konfirmasi password) masih
+// manggil route('dashboard') secara internal. Daripada edit banyak file,
+// cukup arahkan nama 'dashboard' ke tempat yang sama dengan admin.galeri.index.
+Route::redirect('/dashboard', '/admin/galeri')->middleware('auth')->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

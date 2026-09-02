@@ -21,10 +21,6 @@
         <img src="{{ asset('images/SMKN4.png') }}" alt="Logo SMKN 4 Kota Bogor" class="h-9 w-9">
         <span class="font-semibold tracking-wide text-slate-900">SMKN 4 KOTA BOGOR</span>
       </div>
-      <div class="flex items-center gap-6">
-        <a href="#" class="text-sm text-slate-700 hover:text-slate-950">Masuk</a>
-        <a href="#" class="text-sm bg-slate-900 text-white px-5 py-2.5 rounded-md hover:bg-slate-800 transition">login</a>
-      </div>
     </nav>
   </header>
 
