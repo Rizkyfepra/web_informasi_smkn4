@@ -5,15 +5,19 @@ use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GaleriPublicController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\ProdukPublicController;
 
 // ===== Route custom kita (beranda, galeri, admin) =====
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/galeri', [GaleriPublicController::class, 'index'])->name('galeri.index');
+Route::get('/produk', [ProdukPublicController::class, 'index'])->name('produk.index');
 
 Route::prefix('admin')->name('admin.')
     ->middleware(['auth', 'can:manage-gallery'])
     ->group(function () {
         Route::resource('galeri', GaleriController::class);
+        Route::resource('produk', ProdukController::class);
     });
 
 // ===== Route bawaan Breeze (biarkan, dipakai halaman edit profil) =====
