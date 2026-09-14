@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title', 'Dashboard') - Admin SMKN 4 Bogor</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
   </style>
@@ -30,15 +29,25 @@
         <p class="px-3 text-[11px] uppercase tracking-wider text-slate-500 mb-2">Menu Utama</p>
 
         <a href="{{ route('admin.galeri.index') }}"
-           class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm transition
+           class="block px-3 py-2.5 rounded-md text-sm transition
                   {{ request()->routeIs('admin.galeri.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
-          <i class="fa-solid fa-images w-4 text-center"></i>
           Galeri Visual
         </a>
 
+        <a href="{{ route('admin.produk.index') }}"
+           class="block px-3 py-2.5 rounded-md text-sm transition
+                  {{ request()->routeIs('admin.produk.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
+          Produk
+        </a>
+
+        <a href="{{ route('admin.artikel.index') }}"
+           class="block px-3 py-2.5 rounded-md text-sm transition
+                  {{ request()->routeIs('admin.artikel.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
+          Artikel
+        </a>
+
         <a href="{{ url('/') }}" target="_blank"
-           class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm hover:bg-slate-800 hover:text-white transition">
-          <i class="fa-solid fa-globe w-4 text-center"></i>
+           class="block px-3 py-2.5 rounded-md text-sm hover:bg-slate-800 hover:text-white transition">
           Lihat Website
         </a>
       </nav>
@@ -59,18 +68,16 @@
       {{-- Topbar --}}
       <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 sticky top-0 z-10">
         <div class="flex items-center gap-4">
-          <button @click="sidebarOpen = !sidebarOpen" class="md:hidden text-slate-500">
-            <i class="fa-solid fa-bars text-lg"></i>
+          <button @click="sidebarOpen = !sidebarOpen" class="md:hidden text-slate-500 font-bold text-lg">
+            Menu
           </button>
           <h1 class="text-lg font-semibold text-slate-800">@yield('title', 'Dashboard')</h1>
         </div>
         <div class="flex items-center gap-3 text-sm text-slate-500">
-          <i class="fa-solid fa-circle-user text-xl"></i>
           <span>{{ auth()->user()->name }}</span>
           <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="flex items-center gap-1 text-red-600 hover:text-red-700 font-medium transition">
-              <i class="fa-solid fa-right-from-bracket"></i>
+            <button type="submit" class="text-red-600 hover:text-red-700 font-medium transition">
               Keluar
             </button>
           </form>
@@ -87,8 +94,7 @@
       {{-- Konten --}}
       <main class="flex-1 p-6">
         @if (session('success'))
-          <div class="bg-green-100 text-green-700 text-sm px-4 py-3 rounded-md mb-6 flex items-center gap-2">
-            <i class="fa-solid fa-circle-check"></i>
+          <div class="bg-green-100 text-green-700 text-sm px-4 py-3 rounded-md mb-6">
             {{ session('success') }}
           </div>
         @endif

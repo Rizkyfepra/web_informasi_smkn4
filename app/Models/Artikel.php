@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Produk extends Model
+class Artikel extends Model
 {
-    protected $table = 'produk';
+    protected $table = 'artikel';
 
     protected $fillable = [
-        'nama',
-        'deskripsi',
+        'judul',
         'kategori',
-        'harga',
-        'satuan',
+        'penulis',
+        'ringkasan',
+        'isi',
         'gambar',
     ];
 }

@@ -15,14 +15,44 @@
 </head>
 <body class="text-slate-800 antialiased">
 
-  <header class="border-b border-slate-100">
+  <header class="border-b border-slate-100 relative">
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
       <div class="flex items-center gap-3">
         <img src="{{ asset('images/SMKN4.png') }}" alt="Logo SMKN 4 Kota Bogor" class="h-9 w-9">
         <span class="font-semibold tracking-wide text-slate-900">SMKN 4 KOTA BOGOR</span>
       </div>
+
+      {{-- Menu buat layar besar (desktop) -- tersembunyi di HP --}}
+      <div class="hidden md:flex items-center gap-8 text-sm text-slate-600">
+        <a href="{{ route('home') }}" class="hover:text-blue-700">Beranda</a>
+        <a href="{{ route('home') }}#profil" class="hover:text-blue-700">Profil</a>
+        <a href="{{ route('produk.index') }}" class="hover:text-blue-700">Produk</a>
+        <a href="{{ route('galeri.index') }}" class="hover:text-blue-700">Galeri</a>
+        <a href="{{ route('home') }}#kontak" class="hover:text-blue-700">Kontak</a>
+      </div>
+
+      {{-- Tombol hamburger -- cuma keliatan di HP --}}
+      <button id="menu-toggle" class="md:hidden text-slate-700" aria-label="Buka menu">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
     </nav>
+
+    {{-- Menu versi HP -- default tersembunyi (hidden), muncul kalau tombol diklik --}}
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 px-6 py-4 space-y-3 text-sm text-slate-600 bg-white">
+      <a href="{{ route('home') }}" class="block hover:text-blue-700">Beranda</a>
+      <a href="{{ route('home') }}#profil" class="block hover:text-blue-700">Profil</a>
+      <a href="{{ route('produk.index') }}" class="block hover:text-blue-700">Produk</a>
+      <a href="{{ route('galeri.index') }}" class="block hover:text-blue-700">Galeri</a>
+      <a href="{{ route('home') }}#kontak" class="block hover:text-blue-700">Kontak</a>
+    </div>
   </header>
+
+  <script>
+    // Toggle sederhana: klik tombol -> tambah/hapus class 'hidden' di menu HP
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
 
   {{-- Hero --}}
   <section class="relative h-[640px] flex items-end">
@@ -103,35 +133,130 @@
     </div>
   </section>
 
-  {{-- Galeri Visual --}}
+{{-- ===== Artikel & Pengumuman ===== --}}
   <section class="max-w-7xl mx-auto px-6 py-20">
-    <div class="flex items-center justify-between mb-10">
-      <h2 class="font-serif text-3xl font-semibold text-slate-900">Galeri Visual</h2>
-      <a href="{{ route('galeri.index') }}" class="text-sm text-slate-700 hover:text-slate-950">Lihat Semua Galeri &#8599;</a>
+    <div class="flex items-start justify-between mb-10 flex-wrap gap-4">
+      <div>
+        <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-2">Artikel & Pengumuman Sekolah</h2>
+        <p class="text-slate-500">Temukan warta terbaru, capaian prestasi, agenda akademik, dan informasi sekolah.</p>
+      </div>
+      <a href="{{ route('artikel.index') }}"
+         class="border border-blue-600 text-blue-600 text-sm font-medium px-4 py-2 rounded-md hover:bg-blue-50 transition whitespace-nowrap">
+        Lihat Semua Artikel &rarr;
+      </a>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      @forelse ($daftarGaleri as $galeri)
+      @forelse ($daftarArtikel as $artikel)
         <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
-          <div class="h-56 bg-slate-200 overflow-hidden">
-            @if ($galeri->gambar)
-              <img src="{{ Storage::url($galeri->gambar) }}" alt="{{ $galeri->judul }}" class="w-full h-full object-cover">
+          <div class="h-48 bg-slate-200 overflow-hidden relative">
+            @if ($artikel->gambar)
+              <img src="{{ Storage::url($artikel->gambar) }}" class="w-full h-full object-cover">
+            @endif
+            @if ($artikel->kategori)
+              <span class="absolute top-3 left-3 text-xs font-medium text-white bg-blue-700 px-3 py-1 rounded-full">{{ $artikel->kategori }}</span>
             @endif
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-slate-900 mb-2">{{ $galeri->judul }}</h3>
-            <p class="text-slate-500 text-sm leading-relaxed mb-5">{{ Str::limit($galeri->deskripsi, 100) }}</p>
-            <div class="flex items-center justify-between">
-              <span class="text-sm text-slate-500">{{ $galeri->created_at->translatedFormat('d M Y') }}</span>
-              @if ($galeri->kategori)
-                <span class="text-sm font-medium text-blue-700 bg-blue-50 px-4 py-1.5 rounded-full">{{ $galeri->kategori }}</span>
-              @endif
-            </div>
+            <p class="text-xs text-slate-400 mb-2">{{ $artikel->created_at->translatedFormat('d M Y') }} &bull; Oleh {{ $artikel->penulis ?? '-' }}</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">{{ $artikel->judul }}</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">{{ Str::limit($artikel->ringkasan, 90) }}</p>
+            <a href="{{ route('artikel.show', $artikel) }}" class="text-sm font-medium text-blue-700 hover:text-blue-800">Baca Selengkapnya &rarr;</a>
           </div>
         </article>
       @empty
-        <p class="text-slate-400 text-sm">Belum ada galeri yang ditambahkan.</p>
+        <p class="text-slate-400 text-sm">Belum ada artikel yang ditambahkan.</p>
       @endforelse
+    </div>
+  </section>
+
+  {{-- ===== Galeri Kampus & Produk Kreatif Siswa (2 kolom) ===== --}}
+  <section class="max-w-7xl mx-auto px-6 pb-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+      {{-- Kolom kiri: Galeri --}}
+      <div class="border border-slate-200 rounded-2xl p-6">
+        <div class="flex items-start justify-between mb-6 flex-wrap gap-3">
+          <div>
+            <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-1">Galeri Kampus</h2>
+            <p class="text-slate-500 text-sm">Koleksi rekaman aktivitas siswa, fasilitas belajar, dan agenda sekolah.</p>
+          </div>
+          <a href="{{ route('galeri.index') }}"
+             class="border border-blue-600 text-blue-600 text-xs font-medium px-3 py-1.5 rounded-md hover:bg-blue-50 transition whitespace-nowrap">
+            Lihat Semua Foto &rarr;
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          @forelse ($daftarGaleri->take(4) as $galeri)
+            <article class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+              <div class="h-28 bg-slate-200 overflow-hidden">
+                @if ($galeri->gambar)
+                  <img src="{{ Storage::url($galeri->gambar) }}" class="w-full h-full object-cover">
+                @endif
+              </div>
+              <div class="p-3">
+                <h4 class="text-sm font-bold text-slate-900 mb-1">{{ $galeri->judul }}</h4>
+                <div class="flex items-center justify-between text-xs text-slate-400">
+                  <span>{{ $galeri->created_at->translatedFormat('d M Y') }}</span>
+                  @if ($galeri->kategori)
+                    <span class="font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full">{{ $galeri->kategori }}</span>
+                  @endif
+                </div>
+              </div>
+            </article>
+          @empty
+            <p class="text-slate-400 text-sm col-span-2">Belum ada galeri.</p>
+          @endforelse
+        </div>
+      </div>
+
+      {{-- Kolom kanan: Produk --}}
+      <div class="border border-slate-200 rounded-2xl p-6">
+        <div class="flex items-start justify-between mb-6 flex-wrap gap-3">
+          <div>
+            <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-1">Produk Kreatif Siswa</h2>
+            <p class="text-slate-500 text-sm">Inovasi perangkat lunak, produk kreatif, dan jasa digital siap pakai.</p>
+          </div>
+          <a href="{{ route('produk.index') }}"
+             class="border border-blue-600 text-blue-600 text-xs font-medium px-3 py-1.5 rounded-md hover:bg-blue-50 transition whitespace-nowrap">
+            Katalog Lengkap &rarr;
+          </a>
+        </div>
+
+        <div class="space-y-4">
+          @forelse ($daftarProduk->take(3) as $produk)
+            <article class="flex gap-4 border border-slate-200 rounded-xl p-3">
+              <div class="w-20 h-20 shrink-0 bg-slate-200 rounded-lg overflow-hidden">
+                @if ($produk->gambar)
+                  <img src="{{ Storage::url($produk->gambar) }}" class="w-full h-full object-cover">
+                @endif
+              </div>
+              <div class="flex-1 min-w-0">
+                @if ($produk->kategori)
+                  <p class="text-xs font-medium text-blue-700 mb-0.5">{{ $produk->kategori }}</p>
+                @endif
+                <h4 class="text-sm font-bold text-slate-900 mb-1">{{ $produk->nama }}</h4>
+                <p class="text-xs text-slate-500 mb-2 line-clamp-2">{{ Str::limit($produk->deskripsi, 70) }}</p>
+                <div class="flex items-center justify-between">
+                  @if ($produk->harga)
+                    <span class="text-sm font-semibold text-slate-900">
+                      Rp {{ number_format($produk->harga, 0, ',', '.') }}
+                      <span class="text-xs font-normal text-slate-400">{{ $produk->satuan }}</span>
+                    </span>
+                  @else
+                    <span></span>
+                  @endif
+                  <a href="{{ route('produk.index') }}" class="text-xs font-medium text-blue-700 border border-blue-200 px-2.5 py-1 rounded-md hover:bg-blue-50">Detail</a>
+                </div>
+              </div>
+            </article>
+          @empty
+            <p class="text-slate-400 text-sm">Belum ada produk.</p>
+          @endforelse
+        </div>
+      </div>
+
     </div>
   </section>
 

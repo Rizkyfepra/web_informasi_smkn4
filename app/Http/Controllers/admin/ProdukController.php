@@ -26,7 +26,9 @@ class ProdukController extends Controller
             'nama'      => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'kategori'  => 'nullable|string|max:100',
-            'gambar'    => 'nullable|image|max:2048', // maks 2MB
+            'harga'     => 'nullable|integer|min:0',
+            'satuan'    => 'nullable|string|max:50',
+            'gambar'    => 'nullable|image|max:2048',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -49,11 +51,12 @@ class ProdukController extends Controller
             'nama'      => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'kategori'  => 'nullable|string|max:100',
+            'harga'     => 'nullable|integer|min:0',
+            'satuan'    => 'nullable|string|max:50',
             'gambar'    => 'nullable|image|max:2048',
         ]);
 
         if ($request->hasFile('gambar')) {
-            // hapus gambar lama biar tidak numpuk sampah file
             if ($produk->gambar) {
                 Storage::disk('public')->delete($produk->gambar);
             }
