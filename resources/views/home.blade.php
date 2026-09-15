@@ -23,12 +23,13 @@
       </div>
 
       {{-- Menu buat layar besar (desktop) -- tersembunyi di HP --}}
+     
       <div class="hidden md:flex items-center gap-8 text-sm text-slate-600">
         <a href="{{ route('home') }}" class="hover:text-blue-700">Beranda</a>
-        <a href="{{ route('home') }}#profil" class="hover:text-blue-700">Profil</a>
-        <a href="{{ route('produk.index') }}" class="hover:text-blue-700">Produk</a>
-        <a href="{{ route('galeri.index') }}" class="hover:text-blue-700">Galeri</a>
-        <a href="{{ route('home') }}#kontak" class="hover:text-blue-700">Kontak</a>
+        <a href="#profil" class="hover:text-blue-700">Profil</a>
+        <a href="#artikel" class="hover:text-blue-700">Artikel</a>
+        <a href="#galeri-produk" class="hover:text-blue-700">Galeri & Produk</a>
+        <a href="#kontak" class="hover:text-blue-700">Kontak</a>
       </div>
 
       {{-- Tombol hamburger -- cuma keliatan di HP --}}
@@ -38,12 +39,13 @@
     </nav>
 
     {{-- Menu versi HP -- default tersembunyi (hidden), muncul kalau tombol diklik --}}
+    
     <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 px-6 py-4 space-y-3 text-sm text-slate-600 bg-white">
       <a href="{{ route('home') }}" class="block hover:text-blue-700">Beranda</a>
-      <a href="{{ route('home') }}#profil" class="block hover:text-blue-700">Profil</a>
-      <a href="{{ route('produk.index') }}" class="block hover:text-blue-700">Produk</a>
-      <a href="{{ route('galeri.index') }}" class="block hover:text-blue-700">Galeri</a>
-      <a href="{{ route('home') }}#kontak" class="block hover:text-blue-700">Kontak</a>
+      <a href="#profil" class="block hover:text-blue-700">Profil</a>
+      <a href="#artikel" class="block hover:text-blue-700">Artikel</a>
+      <a href="#galeri-produk" class="block hover:text-blue-700">Galeri & Produk</a>
+      <a href="#kontak" class="block hover:text-blue-700">Kontak</a>
     </div>
   </header>
 
@@ -77,7 +79,7 @@
   </section>
 
   {{-- Profil Sekolah --}}
-  <section class="bg-white">
+  <section id="profil" class="bg-white">
     <div class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div>
         <h2 class="text-2xl md:text-3xl font-bold text-blue-700 mb-4">Profil Sekolah</h2>
@@ -134,7 +136,7 @@
   </section>
 
 {{-- ===== Artikel & Pengumuman ===== --}}
-  <section class="max-w-7xl mx-auto px-6 py-20">
+    <section id="artikel" class="max-w-7xl mx-auto px-6 py-20">
     <div class="flex items-start justify-between mb-10 flex-wrap gap-4">
       <div>
         <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-2">Artikel & Pengumuman Sekolah</h2>
@@ -171,7 +173,7 @@
   </section>
 
   {{-- ===== Galeri Kampus & Produk Kreatif Siswa (2 kolom) ===== --}}
-  <section class="max-w-7xl mx-auto px-6 pb-20">
+    <section id="galeri-produk" class="max-w-7xl mx-auto px-6 pb-20">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
       {{-- Kolom kiri: Galeri --}}
@@ -261,7 +263,8 @@
   </section>
 
   {{-- Footer --}}
-  <footer class="bg-slate-800 text-white">
+   <footer id="kontak" class="bg-slate-800 text-white">
+
     <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
 
       <div>
