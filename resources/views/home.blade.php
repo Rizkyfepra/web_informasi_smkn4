@@ -180,7 +180,7 @@
       <div class="border border-slate-200 rounded-2xl p-6">
         <div class="flex items-start justify-between mb-6 flex-wrap gap-3">
           <div>
-            <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-1">Galeri Kampus</h2>
+            <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-1">Galeri Visual</h2>
             <p class="text-slate-500 text-sm">Koleksi rekaman aktivitas siswa, fasilitas belajar, dan agenda sekolah.</p>
           </div>
           <a href="{{ route('galeri.index') }}"
