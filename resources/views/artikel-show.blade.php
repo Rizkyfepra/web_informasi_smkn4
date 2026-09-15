@@ -15,7 +15,8 @@
     @endif
 
     <h1 class="text-3xl font-bold text-slate-900 mt-4 mb-2">{{ $artikel->judul }}</h1>
-    <p class="text-sm text-slate-400 mb-8">{{ $artikel->created_at->translatedFormat('d M Y') }} &bull; Oleh {{ $artikel->penulis ?? '-' }}</p>
+        <p class="text-sm text-slate-400 mb-8">{{ $artikel->created_at->translatedFormat('d M Y') }}</p>
+
 
     @if ($artikel->gambar)
         <img src="{{ Storage::url($artikel->gambar) }}" class="w-full h-80 object-cover rounded-2xl mb-8">

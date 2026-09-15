@@ -160,7 +160,7 @@
             @endif
           </div>
           <div class="p-6">
-            <p class="text-xs text-slate-400 mb-2">{{ $artikel->created_at->translatedFormat('d M Y') }} &bull; Oleh {{ $artikel->penulis ?? '-' }}</p>
+            <p class="text-xs text-slate-400 mb-2">{{ $artikel->created_at->translatedFormat('d M Y') }}</p>
             <h3 class="text-lg font-bold text-slate-900 mb-2">{{ $artikel->judul }}</h3>
             <p class="text-slate-500 text-sm leading-relaxed mb-4">{{ Str::limit($artikel->ringkasan, 90) }}</p>
             <a href="{{ route('artikel.show', $artikel) }}" class="text-sm font-medium text-blue-700 hover:text-blue-800">Baca Selengkapnya &rarr;</a>
@@ -234,24 +234,20 @@
                   <img src="{{ Storage::url($produk->gambar) }}" class="w-full h-full object-cover">
                 @endif
               </div>
-              <div class="flex-1 min-w-0">
-                @if ($produk->kategori)
-                  <p class="text-xs font-medium text-blue-700 mb-0.5">{{ $produk->kategori }}</p>
-                @endif
+                  <div class="flex-1 min-w-0">
                 <h4 class="text-sm font-bold text-slate-900 mb-1">{{ $produk->nama }}</h4>
                 <p class="text-xs text-slate-500 mb-2 line-clamp-2">{{ Str::limit($produk->deskripsi, 70) }}</p>
                 <div class="flex items-center justify-between">
                   @if ($produk->harga)
-                    <span class="text-sm font-semibold text-slate-900">
-                      Rp {{ number_format($produk->harga, 0, ',', '.') }}
-                      <span class="text-xs font-normal text-slate-400">{{ $produk->satuan }}</span>
-                    </span>
+                    <span class="text-sm font-semibold text-slate-900">Rp {{ number_format($produk->harga, 0, ',', '.') }}</span>
                   @else
                     <span></span>
                   @endif
                   <a href="{{ route('produk.index') }}" class="text-xs font-medium text-blue-700 border border-blue-200 px-2.5 py-1 rounded-md hover:bg-blue-50">Detail</a>
                 </div>
               </div>
+
+
             </article>
           @empty
             <p class="text-slate-400 text-sm">Belum ada produk.</p>

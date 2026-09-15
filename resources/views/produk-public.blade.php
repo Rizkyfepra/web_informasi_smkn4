@@ -20,11 +20,12 @@
                         <img src="{{ Storage::url($produk->gambar) }}" alt="{{ $produk->nama }}" class="w-full h-full object-cover">
                     @endif
                 </div>
+                
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-slate-900 mb-2">{{ $produk->nama }}</h3>
                     <p class="text-slate-500 text-sm leading-relaxed mb-3">{{ Str::limit($produk->deskripsi, 100) }}</p>
-                    @if ($produk->kategori)
-                        <span class="text-sm font-medium text-blue-700 bg-blue-50 px-4 py-1.5 rounded-full">{{ $produk->kategori }}</span>
+                    @if ($produk->harga)
+                        <span class="text-sm font-semibold text-slate-900">Rp {{ number_format($produk->harga, 0, ',', '.') }}</span>
                     @endif
                 </div>
             </article>

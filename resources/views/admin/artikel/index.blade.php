@@ -18,7 +18,6 @@
                 <th class="px-6 py-3 font-medium">Gambar</th>
                 <th class="px-6 py-3 font-medium">Judul</th>
                 <th class="px-6 py-3 font-medium">Kategori</th>
-                <th class="px-6 py-3 font-medium">Penulis</th>
                 <th class="px-6 py-3 font-medium">Aksi</th>
             </tr>
         </thead>
@@ -38,7 +37,6 @@
                             <span class="text-xs font-medium text-blue-700 bg-blue-50 px-3 py-1 rounded-full">{{ $artikel->kategori }}</span>
                         @endif
                     </td>
-                    <td class="px-6 py-4 text-slate-500">{{ $artikel->penulis }}</td>
                     <td class="px-6 py-4">
                         <a href="{{ route('admin.artikel.edit', $artikel) }}" class="text-blue-600 hover:underline mr-3">Edit</a>
                         <form action="{{ route('admin.artikel.destroy', $artikel) }}" method="POST" class="inline"
@@ -50,7 +48,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="5" class="px-6 py-8 text-center text-slate-400">Belum ada artikel.</td></tr>
+                <tr><td colspan="4" class="px-6 py-8 text-center text-slate-400">Belum ada artikel.</td></tr>
             @endforelse
         </tbody>
     </table>

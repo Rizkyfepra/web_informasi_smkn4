@@ -17,17 +17,10 @@
         @error('judul') <p class="text-red-600 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
-        <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Kategori</label>
-            <input type="text" name="kategori" value="{{ old('kategori', $artikel->kategori) }}"
-                   class="w-full border border-slate-300 rounded-md px-3 py-2 text-sm">
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Penulis</label>
-            <input type="text" name="penulis" value="{{ old('penulis', $artikel->penulis) }}"
-                   class="w-full border border-slate-300 rounded-md px-3 py-2 text-sm">
-        </div>
+    <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1">Kategori</label>
+        <input type="text" name="kategori" value="{{ old('kategori', $artikel->kategori) }}"
+               class="w-full border border-slate-300 rounded-md px-3 py-2 text-sm">
     </div>
 
     <div>

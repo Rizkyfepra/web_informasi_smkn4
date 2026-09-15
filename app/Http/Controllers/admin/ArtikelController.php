@@ -25,7 +25,6 @@ class ArtikelController extends Controller
         $validated = $request->validate([
             'judul'     => 'required|string|max:255',
             'kategori'  => 'nullable|string|max:100',
-            'penulis'   => 'nullable|string|max:100',
             'ringkasan' => 'nullable|string|max:255',
             'isi'       => 'nullable|string',
             'gambar'    => 'nullable|image|max:2048',
@@ -50,7 +49,6 @@ class ArtikelController extends Controller
         $validated = $request->validate([
             'judul'     => 'required|string|max:255',
             'kategori'  => 'nullable|string|max:100',
-            'penulis'   => 'nullable|string|max:100',
             'ringkasan' => 'nullable|string|max:255',
             'isi'       => 'nullable|string',
             'gambar'    => 'nullable|image|max:2048',
