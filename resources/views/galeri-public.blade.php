@@ -7,6 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   body { font-family: 'Inter', sans-serif; }
   .font-serif { font-family: 'Playfair Display', serif; }
@@ -14,18 +15,8 @@
 </head>
 <body class="text-slate-800 antialiased bg-slate-50">
 
-  {{-- Header (sama seperti homepage) --}}
-  <header class="border-b border-slate-100 bg-white">
-    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-      <div class="flex items-center gap-3">
-        <img src="{{ asset('images/SMKN4.png') }}" alt="Logo SMKN 4 Kota Bogor" class="h-9 w-9">
-        <span class="font-semibold tracking-wide text-slate-900">SMKN 4 KOTA BOGOR</span>
-      </div>
-      <a href="{{ url('/') }}" class="text-sm text-slate-700 hover:text-slate-950">&larr; Kembali ke Beranda</a>
-    </nav>
-  </header>
+  @include('partials.navbar')
 
-  {{-- Konten --}}
   <section class="max-w-7xl mx-auto px-6 py-16">
     <div class="mb-10">
       <h1 class="font-serif text-3xl md:text-4xl font-semibold text-slate-900">Galeri Visual</h1>
@@ -37,18 +28,9 @@
         <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
           <div class="h-56 bg-slate-200 overflow-hidden">
             @if ($galeri->gambar)
-              <img src="{{ Storage::url($galeri->gambar) }}" alt="{{ $galeri->judul }}" class="w-full h-full object-cover">
+              <img src="{{ Storage::url($galeri->gambar) }}" class="w-full h-full object-cover cursor-pointer hover:opacity-80 transition"
+                   onclick="openLightbox('{{ Storage::url($galeri->gambar) }}')">
             @endif
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-slate-900 mb-2">{{ $galeri->judul }}</h3>
-            <p class="text-slate-500 text-sm leading-relaxed mb-5">{{ $galeri->deskripsi }}</p>
-            <div class="flex items-center justify-between">
-              <span class="text-sm text-slate-500">{{ $galeri->created_at->translatedFormat('d M Y') }}</span>
-              @if ($galeri->kategori)
-                <span class="text-sm font-medium text-blue-700 bg-blue-50 px-4 py-1.5 rounded-full">{{ $galeri->kategori }}</span>
-              @endif
-            </div>
           </div>
         </article>
       @empty
@@ -60,6 +42,8 @@
       {{ $daftarGaleri->links() }}
     </div>
   </section>
+
+  @include('partials.lightbox')
 
 </body>
 </html>
