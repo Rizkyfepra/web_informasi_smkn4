@@ -26,7 +26,7 @@ class GaleriController extends Controller
             'judul'     => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'kategori'  => 'required|string|max:100',
-            'gambar'    => 'required|image|mimes:jpg,jpeg,png,webp|max:2048', // max 2MB
+            'gambar'    => 'required|image|mimes:jpg,jpeg,png,webp|max:9048', // max 2MB
         ]);
 
         // Upload gambar ke storage/app/public/galeri
@@ -50,7 +50,7 @@ class GaleriController extends Controller
             'judul'     => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'kategori'  => 'required|string|max:100',
-            'gambar'    => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'gambar'    => 'nullable|image|mimes:jpg,jpeg,png,webp|max:9048',
         ]);
 
         if ($request->hasFile('gambar')) {

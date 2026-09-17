@@ -27,7 +27,7 @@ class ArtikelController extends Controller
             'kategori'  => 'nullable|string|max:100',
             'ringkasan' => 'nullable|string|max:255',
             'isi'       => 'nullable|string',
-            'gambar'    => 'nullable|image|max:2048',
+            'gambar'    => 'nullable|image|max:9048',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -51,7 +51,7 @@ class ArtikelController extends Controller
             'kategori'  => 'nullable|string|max:100',
             'ringkasan' => 'nullable|string|max:255',
             'isi'       => 'nullable|string',
-            'gambar'    => 'nullable|image|max:2048',
+            'gambar'    => 'nullable|image|max:9048',
         ]);
 
         if ($request->hasFile('gambar')) {
